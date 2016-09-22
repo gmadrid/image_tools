@@ -1,0 +1,10 @@
+[package]
+name = "image_hash"
+version = "0.1.0"
+authors = ["George Madrid <gmadrid@gmail.com>"]
+
+[dependencies]
+core-foundation = "0.2"
+core-foundation-sys = "0.2"
+core-graphics = "0.4.1"
+libc = "*"
