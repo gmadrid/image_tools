@@ -32,19 +32,30 @@ impl CGImage {
   pub fn read_jpg<T>(mut reader: T) -> Result<CGImage>
     where T: Read {
     unsafe {
+      println!("HERE");
       let mut bytes: Vec<u8> = Vec::new();
+      println!("HTERE");
       try!(reader.read_to_end(&mut bytes));
+      println!("EVERYTHERE");
 
       let data_provider = CGDataProvider::from_buffer(&bytes);
+      println!("CANNOT");
       // TODO: Is this the right value for shouldInterpolate?
       let result = CGImageCreateWithJPEGDataProvider(data_provider.as_concrete_TypeRef(),
                                                      ptr::null(),
                                                      0,
                                                      kCGRenderingIntentDefault);
+      println!("IMAGINE");
       if result != ptr::null() {
-        Ok(TCFType::wrap_under_create_rule(result))
+        println!("about to wrap");
+        let foo = Ok(TCFType::wrap_under_create_rule(result));
+        println!("wrapped");
+        foo
       } else {
-        Err(Error::FailedToLoadAsJPEG)
+        println!("ERRORING");
+        let bar = Err(Error::FailedToLoadAsJPEG);
+        println!("barring");
+        bar
       }
     }
   }
